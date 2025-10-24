@@ -20,6 +20,11 @@ dnf install -y @cosmic-desktop-environment
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+rm /usr/share/backgrounds/default.jxl
+ln -s cosmic/orion_nebula_nasa_heic0601a.jpg /usr/share/backgrounds/default.jxl
+rm /usr/share/backgrounds/default-dark.jxl
+ln -s cosmic/orion_nebula_nasa_heic0601a.jpg /usr/share/backgrounds/default-dark.jxl
+
 #### Example for enabling a System Unit File
 
 # systemctl enable podman.socket
