@@ -20,6 +20,27 @@ dnf install -y @cosmic-desktop-environment
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
 
+. /usr/lib/os-release
+
+IMAGE_NAME="mintaka"
+IMAGE_PRETTY_NAME="Mintaka"
+HOME_URL="https://github.com/hbdesiato/mintaka"
+DOCUMENTATION_URL="https://github.com/hbdesiato/mintaka"
+SUPPORT_URL="https://github.com/hbdesiato/mintaka/issues"
+BUG_SUPPORT_URL="https://github.com/hbdesiato/mintaka/issues"
+
+sed -i "s|^VARIANT_ID=.*|VARIANT_ID=$IMAGE_NAME|" /usr/lib/os-release
+sed -i "s|^PRETTY_NAME=.*|PRETTY_NAME=\"${IMAGE_PRETTY_NAME} (Version: ${VERSION})\"|" /usr/lib/os-release
+sed -i "s|^NAME=.*|NAME=\"$IMAGE_PRETTY_NAME\"|" /usr/lib/os-release
+sed -i "s|^HOME_URL=.*|HOME_URL=\"$HOME_URL\"|" /usr/lib/os-release
+sed -i "s|^DOCUMENTATION_URL=.*|DOCUMENTATION_URL=\"$DOCUMENTATION_URL\"|" /usr/lib/os-release
+sed -i "s|^SUPPORT_URL=.*|SUPPORT_URL=\"$SUPPORT_URL\"|" /usr/lib/os-release
+sed -i "s|^BUG_REPORT_URL=.*|BUG_REPORT_URL=\"$BUG_SUPPORT_URL\"|" /usr/lib/os-release
+sed -i "s|^CPE_NAME=\"cpe:/o:fedoraproject:fedora|CPE_NAME=\"cpe:/o:universal-blue:${IMAGE_PRETTY_NAME,}|" /usr/lib/os-release
+sed -i "s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME=\"${IMAGE_PRETTY_NAME,}\"|" /usr/lib/os-release
+sed -i "s|^ID=fedora|ID=${IMAGE_PRETTY_NAME,}\nID_LIKE=\"${IMAGE_LIKE}\"|" /usr/lib/os-release
+sed -i "s|^IMAGE_ID=.*|IMAGE_ID=$IMAGE_NAME|" /usr/lib/os-release
+
 rm /usr/share/backgrounds/default.jxl
 ln -s cosmic/orion_nebula_nasa_heic0601a.jpg /usr/share/backgrounds/default.jxl
 rm /usr/share/backgrounds/default-dark.jxl
