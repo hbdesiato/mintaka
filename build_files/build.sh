@@ -40,6 +40,12 @@ sed -i "s|^DEFAULT_HOSTNAME=.*|DEFAULT_HOSTNAME=\"${IMAGE_PRETTY_NAME,}\"|" /usr
 sed -i "s|^ID=.*|ID=${IMAGE_PRETTY_NAME,}|" /usr/lib/os-release
 sed -i "s|^IMAGE_ID=.*|IMAGE_ID=$IMAGE_NAME|" /usr/lib/os-release
 
+cat /usr/share/ublue-os/image-info.json | \
+jq ".\"image-name\"=\"$IMAGE_NAME\"" | \
+jq ".\"image-tag\"=\"latest\"" | \
+jq ".\"image-ref\"=\"ostree-image-signed:docker://ghcr.io/hbdesiato/mintaka\"" | \
+cat > /usr/share/ublue-os/image-info.json
+
 rm /usr/share/backgrounds/default.jxl
 ln -s cosmic/orion_nebula_nasa_heic0601a.jpg /usr/share/backgrounds/default.jxl
 rm /usr/share/backgrounds/default-dark.jxl
