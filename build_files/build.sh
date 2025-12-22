@@ -12,6 +12,7 @@ set -ouex pipefail
 # this installs a package from fedora repos
 # dnf5 install -y tmux 
 dnf install -y @cosmic-desktop-environment
+dnf remove -y imsettings
 
 # Use a COPR Example:
 #
