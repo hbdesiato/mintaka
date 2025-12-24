@@ -14,6 +14,10 @@ set -ouex pipefail
 dnf install -y @cosmic-desktop-environment
 dnf remove -y imsettings
 
+dnf insall -y systemd-boot-unsigned systemd-ukify sbsigntools
+mkdir -Zm755 /efi/
+mkdir -Zm755 /boot/efi/
+
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
