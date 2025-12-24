@@ -14,7 +14,7 @@ set -ouex pipefail
 dnf install -y @cosmic-desktop-environment
 dnf remove -y imsettings
 
-dnf insall -y systemd-boot-unsigned systemd-ukify sbsigntools
+dnf install -y systemd-boot-unsigned systemd-ukify sbsigntools
 mkdir -Zm755 /efi/
 mkdir -Zm755 /boot/efi/
 
